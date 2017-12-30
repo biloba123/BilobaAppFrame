@@ -6,8 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/bg_windows"
-    tools:context="com.lvqingyang.appframe.MainActivity">
-    <include layout="@layout/ev_fail"/>
+    android:padding="16dp"
+    android:background="@color/bg_windows">
+   <Button
+       android:id="@+id/btn_msg"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Message"
+       android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_menu"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_check_box"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CheckBox"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_single"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Single"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_multi"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Multi"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:textAllCaps="false"/>
 </LinearLayout>
