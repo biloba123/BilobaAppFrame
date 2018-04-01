@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_menu.setOnClickListener {
-
             AlertDialog.Builder(this)
                     .setTitle("标题")
                     .setItems(Array(4, {i -> "选项${i+1}" }), {dialog, which ->

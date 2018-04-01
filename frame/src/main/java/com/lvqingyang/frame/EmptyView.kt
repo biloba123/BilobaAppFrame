@@ -1,13 +1,10 @@
 package com.lvqingyang.frame
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
 import kotlinx.android.synthetic.main.ev_empty.view.*
 import kotlinx.android.synthetic.main.ev_fail.view.*
 import kotlinx.android.synthetic.main.ev_layout.view.*
@@ -27,25 +24,14 @@ import java.util.*
  * @blog https://biloba123.github.io/
  */
 
-public class EmptyView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
+public open class EmptyView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
     private var mViewShow: View?=null
+    public var STATE_LOAD: Byte=1
+    public var STATE_FAIL: Byte=2
+    public var STATE_EMPTY: Byte=3
+    public var STATE_NO_CONNECT: Byte=4
+    public var STATE_SUCCESS: Byte=5
 
-    /**
-     * 扩展TypedArray的方法
-     */
-    public fun TypedArray.initImage(iv: ImageView, index: Int){
-        val drawable=this.getDrawable(index)
-        if (drawable != null) {
-            iv.setImageDrawable(drawable)
-        }
-    }
-
-    public fun TypedArray.initText(tv: TextView, index: Int){
-        val text=this.getString(index)
-        if (text != null) {
-            tv.text=text
-        }
-    }
 
     init {
         val inflater=LayoutInflater.from(context)
@@ -78,25 +64,27 @@ public class EmptyView(context: Context?, attrs: AttributeSet?) : FrameLayout(co
         }
     }
 
-    public fun loading(){
-        changeState(layout_loading)
+    public fun loading()=changeState(layout_loading)
+
+    public fun failed()=changeState(layout_failed)
+
+    public fun noConnection()=changeState(layout_no_connection)
+
+    public fun empty()=changeState(layout_empty)
+
+    public fun success()=changeState(mViewShow)
+
+    public open fun changeState(state: Byte){
+        when(state){
+            STATE_EMPTY -> empty()
+            STATE_FAIL -> failed()
+            STATE_LOAD -> loading()
+            STATE_NO_CONNECT ->noConnection()
+            STATE_SUCCESS -> success()
+        }
     }
 
-    public fun failed(){
-        changeState(layout_failed)
-    }
 
-    public fun noConnection(){
-        changeState(layout_no_connection)
-    }
-
-    public fun empty(){
-        changeState(layout_empty)
-    }
-
-    public fun success(){
-        changeState(mViewShow)
-    }
 
     public fun setOnRetryListener(listener: OnClickListener){
         layout_no_connection.setOnClickListener{
